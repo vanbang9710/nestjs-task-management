@@ -22,9 +22,7 @@ export class AuthService {
   ): Promise<{ accessToken: string }> {
     const { username, password } = authCredentialsDto;
     const user = await this.usersRepository.findOne({
-      where: {
-        username: username,
-      },
+      where: { username },
     });
 
     if (user && (await bcrypt.compare(password, user.password))) {
