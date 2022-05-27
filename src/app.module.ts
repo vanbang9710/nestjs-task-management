@@ -6,11 +6,13 @@ import { TasksRepository } from './tasks/tasks.repository';
 import { UsersRepository } from './auth/users.repository';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { configValidationSchema } from './config.schema';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       envFilePath: [`.env.stage.${process.env.STAGE}`],
+      validationSchema: configValidationSchema,
     }),
     TasksModule,
     AuthModule,
