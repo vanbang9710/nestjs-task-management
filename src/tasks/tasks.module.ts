@@ -7,8 +7,8 @@ import { TasksService } from './tasks.service';
 
 @Module({
   imports: [TypeOrmExModule.forCustomRepository([TasksRepository]), AuthModule],
-  providers: [TasksService],
   controllers: [TasksController],
+  providers: [TasksService],
   exports: [TasksService],
 })
 export class TasksModule {}

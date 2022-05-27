@@ -24,7 +24,7 @@ import { User } from 'src/entities/user.entity';
 export class TasksController {
   private logger = new Logger('TasksController');
 
-  constructor(private readonly tasksService: TasksService) {}
+  constructor(private tasksService: TasksService) {}
 
   @Get()
   getTasks(
