@@ -5,9 +5,9 @@ import { TypeOrmExModule } from 'src/database/typeorm-ex.module';
 import { UsersRepository } from './users.repository';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
+import { JwtStrategy } from './jwt.strategy';
 
 @Module({
-  exports: [AuthService],
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
@@ -18,7 +18,8 @@ import { JwtModule } from '@nestjs/jwt';
     }),
     TypeOrmExModule.forCustomRepository([UsersRepository]),
   ],
-  providers: [AuthService],
+  providers: [AuthService, JwtStrategy],
   controllers: [AuthController],
+  exports: [AuthService, JwtStrategy, PassportModule],
 })
 export class AuthModule {}
